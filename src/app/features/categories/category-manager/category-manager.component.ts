@@ -19,7 +19,7 @@ import {
   IonInput
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, trashOutline } from 'ionicons/icons';
+import { addCircle, trashOutline, folderOpenOutline } from 'ionicons/icons';
 import { TodoStore } from '@core/services/todo.store';
 
 @Component({
@@ -56,7 +56,7 @@ export class CategoryManagerComponent {
   newCategoryColor = signal('#0071e3');
 
   constructor() {
-    addIcons({ add, trashOutline });
+    addIcons({ addCircle, trashOutline, folderOpenOutline });
   }
 
   addCategory() {

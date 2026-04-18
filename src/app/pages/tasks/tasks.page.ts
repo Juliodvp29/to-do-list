@@ -14,15 +14,19 @@ import {
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
-  IonFab,
-  IonFabButton,
   IonInput,
   IonButtons,
-  IonBadge,
   ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, trashOutline, checkmarkCircle, radioButtonOffOutline, checkmarkCircleOutline, folderOpenOutline } from 'ionicons/icons';
+import { 
+  addCircleOutline, 
+  trashOutline, 
+  checkmarkCircle, 
+  arrowUpCircle,
+  gridOutline,
+  checkmarkDoneCircleOutline
+} from 'ionicons/icons';
 import { TodoStore } from '@core/services/todo.store';
 import { CategoryManagerComponent } from '../../features/categories/category-manager/category-manager.component';
 
@@ -47,35 +51,34 @@ import { CategoryManagerComponent } from '../../features/categories/category-man
     IonItemOptions,
     IonItemOption,
     IonInput,
+    IonButtons,
   ]
 })
 export class TasksPage {
   private todoStore = inject(TodoStore);
   private modalCtrl = inject(ModalController);
   
-  tasks = this.todoStore.tasks;
   filteredTasks = this.todoStore.filteredTasks;
   categories = this.todoStore.categories;
   selectedCategoryId = this.todoStore.selectedCategoryId;
   
   newTaskTitle = signal('');
-  newTaskCategoryId = signal<string | undefined>(undefined);
 
   constructor() {
     addIcons({ 
-      add, 
+      addCircleOutline, 
       trashOutline, 
-      checkmarkCircle, 
-      radioButtonOffOutline, 
-      checkmarkCircleOutline,
-      folderOpenOutline
+      checkmarkCircle,
+      arrowUpCircle,
+      gridOutline,
+      checkmarkDoneCircleOutline
     });
   }
 
   addTask() {
     const title = this.newTaskTitle().trim();
     if (title) {
-      this.todoStore.addTask(title, this.newTaskCategoryId() || this.selectedCategoryId() || undefined);
+      this.todoStore.addTask(title, this.selectedCategoryId() ?? undefined);
       this.newTaskTitle.set('');
     }
   }
@@ -94,6 +97,16 @@ export class TasksPage {
     return category?.color || '#8e8e93';
   }
 
+  getCategoryName(categoryId?: string): string {
+    if (!categoryId) return '';
+    const category = this.categories().find(c => c.id === categoryId);
+    return category?.name || '';
+  }
+
+  getPendingCount(): number {
+    return this.filteredTasks().filter(t => !t.completed).length;
+  }
+
   setCategoryFilter(categoryId: string | null) {
     this.todoStore.selectedCategoryId.set(categoryId);
   }
@@ -101,8 +114,9 @@ export class TasksPage {
   async openCategoryManager() {
     const modal = await this.modalCtrl.create({
       component: CategoryManagerComponent,
-      breakpoints: [0, 0.5, 0.8],
-      initialBreakpoint: 0.5
+      breakpoints: [0, 0.5, 0.85],
+      initialBreakpoint: 0.5,
+      handle: true,
     });
     await modal.present();
   }
