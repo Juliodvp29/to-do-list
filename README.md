@@ -38,6 +38,18 @@ Para compilar y ejecutar en dispositivos iOS (requiere macOS y Xcode):
 
 ---
 
+## Demostración en Video
+
+### 1. Funcionalidad General (Móvil)
+Muestra la fluidez de la interfaz, la creación de tareas, el sistema de categorías y la limpieza visual.
+> ![Ver Video de Funcionalidad](docs/media/cap1.mp4)
+
+### 2. Firebase Remote Config y Feature Flags
+Demostración de cómo se activan/desactivan funcionalidades en tiempo real sin necesidad de reinstalar la app.
+> ![Ver Video de Remote Config](docs/media/cap2.mp4)
+
+---
+
 ## Detalles de los Cambios Realizados
 
 Se han implementado las siguientes mejoras y funcionalidades sobre la base inicial:
