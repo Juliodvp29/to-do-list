@@ -25,9 +25,10 @@ import {
   checkmarkCircle, 
   arrowUpCircle,
   gridOutline,
-  checkmarkDoneCircleOutline
+  checkmarkDoneCircleOutline,
 } from 'ionicons/icons';
 import { TodoStore } from '@core/services/todo.store';
+import { ConfigService } from '@core/services/config.service';
 import { CategoryManagerComponent } from '../../features/categories/category-manager/category-manager.component';
 
 @Component({
@@ -57,6 +58,7 @@ import { CategoryManagerComponent } from '../../features/categories/category-man
 export class TasksPage {
   private todoStore = inject(TodoStore);
   private modalCtrl = inject(ModalController);
+  public configService = inject(ConfigService);
   
   filteredTasks = this.todoStore.filteredTasks;
   categories = this.todoStore.categories;
@@ -71,7 +73,7 @@ export class TasksPage {
       checkmarkCircle,
       arrowUpCircle,
       gridOutline,
-      checkmarkDoneCircleOutline
+      checkmarkDoneCircleOutline,
     });
   }
 

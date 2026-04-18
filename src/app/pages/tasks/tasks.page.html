@@ -61,7 +61,7 @@
     </div>
 
     <!-- Task Count -->
-    @if (filteredTasks().length > 0) {
+    @if (filteredTasks().length > 0 && configService.showPendingCount()) {
       <div class="task-count">
         <span>{{ getPendingCount() }} pendiente{{ getPendingCount() !== 1 ? 's' : '' }}</span>
       </div>
