@@ -21,20 +21,18 @@ export class ConfigService {
   private async initialize() {
     try {
       // Configuration settings
-      this.remoteConfig.settings.minimumFetchIntervalMillis = 3600000; // 1 hour
-      
-      // Fetches and activates the config from Firebase
+      this.remoteConfig.settings.minimumFetchIntervalMillis = 0; 
       await fetchAndActivate(this.remoteConfig);
-      
-      // Update values
       this.updateValues();
     } catch (error) {
-      console.error('Error fetching remote config', error);
+      console.error('Firebase Remote Config: Error al obtener la configuración', error);
     }
   }
 
   private updateValues() {
     const val = getValue(this.remoteConfig, 'show_pending_count');
-    this.showPendingCount.set(val.asBoolean());
+    const boolVal = val.asBoolean();
+    console.log(`Firebase Remote Config: show_pending_count = ${boolVal} (Origen: ${val.getSource()})`);
+    this.showPendingCount.set(boolVal);
   }
 }
