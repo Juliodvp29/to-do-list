@@ -18,11 +18,13 @@ import {
   IonFabButton,
   IonInput,
   IonButtons,
-  IonBadge
+  IonBadge,
+  ModalController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { add, trashOutline, checkmarkCircle, radioButtonOffOutline, checkmarkCircleOutline } from 'ionicons/icons';
+import { add, trashOutline, checkmarkCircle, radioButtonOffOutline, checkmarkCircleOutline, folderOpenOutline } from 'ionicons/icons';
 import { TodoStore } from '@core/services/todo.store';
+import { CategoryManagerComponent } from '../../features/categories/category-manager/category-manager.component';
 
 @Component({
   selector: 'app-tasks',
@@ -44,20 +46,20 @@ import { TodoStore } from '@core/services/todo.store';
     IonItemSliding,
     IonItemOptions,
     IonItemOption,
-    IonFab,
-    IonFabButton,
     IonInput,
-    IonButtons,
-    IonBadge
   ]
 })
 export class TasksPage {
   private todoStore = inject(TodoStore);
+  private modalCtrl = inject(ModalController);
   
   tasks = this.todoStore.tasks;
+  filteredTasks = this.todoStore.filteredTasks;
   categories = this.todoStore.categories;
+  selectedCategoryId = this.todoStore.selectedCategoryId;
   
   newTaskTitle = signal('');
+  newTaskCategoryId = signal<string | undefined>(undefined);
 
   constructor() {
     addIcons({ 
@@ -65,14 +67,15 @@ export class TasksPage {
       trashOutline, 
       checkmarkCircle, 
       radioButtonOffOutline, 
-      checkmarkCircleOutline 
+      checkmarkCircleOutline,
+      folderOpenOutline
     });
   }
 
   addTask() {
     const title = this.newTaskTitle().trim();
     if (title) {
-      this.todoStore.addTask(title);
+      this.todoStore.addTask(title, this.newTaskCategoryId() || this.selectedCategoryId() || undefined);
       this.newTaskTitle.set('');
     }
   }
@@ -89,5 +92,18 @@ export class TasksPage {
     if (!categoryId) return '#8e8e93';
     const category = this.categories().find(c => c.id === categoryId);
     return category?.color || '#8e8e93';
+  }
+
+  setCategoryFilter(categoryId: string | null) {
+    this.todoStore.selectedCategoryId.set(categoryId);
+  }
+
+  async openCategoryManager() {
+    const modal = await this.modalCtrl.create({
+      component: CategoryManagerComponent,
+      breakpoints: [0, 0.5, 0.8],
+      initialBreakpoint: 0.5
+    });
+    await modal.present();
   }
 }

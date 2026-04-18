@@ -12,10 +12,17 @@ export class TodoStore {
   // State
   private tasksSignal = signal<Task[]>(this.loadTasks());
   private categoriesSignal = signal<Category[]>(this.loadCategories());
+  selectedCategoryId = signal<string | null>(null);
 
-  // Selectors Read-only signals
+  // Selectors (Read-only signals & Computed)
   readonly tasks = this.tasksSignal.asReadonly();
   readonly categories = this.categoriesSignal.asReadonly();
+  readonly filteredTasks = computed(() => {
+    const selected = this.selectedCategoryId();
+    const allTasks = this.tasksSignal();
+    if (!selected) return allTasks;
+    return allTasks.filter(t => t.categoryId === selected);
+  });
 
   constructor() {
     // Persist changes to localStorage automatically
@@ -53,6 +60,34 @@ export class TodoStore {
     this.tasksSignal.update((tasks) =>
       tasks.map((t) => (t.id === taskId ? { ...t, ...updates } : t))
     );
+  }
+
+  // Category Actions
+  addCategory(name: string, color: string, icon?: string) {
+    const newCategory: Category = {
+      id: crypto.randomUUID(),
+      name,
+      color,
+      icon
+    };
+    this.categoriesSignal.update(cats => [...cats, newCategory]);
+  }
+
+  updateCategory(id: string, updates: Partial<Category>) {
+    this.categoriesSignal.update(cats =>
+      cats.map(c => (c.id === id ? { ...c, ...updates } : c))
+    );
+  }
+
+  deleteCategory(id: string) {
+    this.categoriesSignal.update(cats => cats.filter(c => c.id !== id));
+    // Remove category from existing tasks
+    this.tasksSignal.update(tasks =>
+      tasks.map(t => t.categoryId === id ? { ...t, categoryId: undefined } : t)
+    );
+    if (this.selectedCategoryId() === id) {
+      this.selectedCategoryId.set(null);
+    }
   }
 
   setTasks(tasks: Task[]) {

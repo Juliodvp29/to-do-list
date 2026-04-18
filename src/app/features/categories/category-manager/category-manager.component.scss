@@ -13,48 +13,7 @@ ion-title {
   letter-spacing: -0.28px;
 }
 
-.tasks-container {
-  padding: 20px;
-}
-
-.category-filters {
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  margin-bottom: 24px;
-  padding-bottom: 8px;
-
-  /* Hide scrollbar */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-.filter-chip {
-  --background: #e5e5ea;
-  --color: #8e8e93;
-  --border-radius: 20px;
-  --padding-start: 16px;
-  --padding-end: 16px;
-  font-size: 14px;
-  font-weight: 500;
-  margin: 0;
-
-  &.active {
-    --background: var(--apple-blue);
-    --color: #ffffff;
-  }
-}
-
-.manage-cat-btn {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  margin: 0;
-}
-
-.add-task-wrapper {
+.add-category-wrapper {
   margin-bottom: 24px;
 }
 
@@ -74,6 +33,25 @@ ion-title {
   letter-spacing: -0.374px;
 }
 
+.color-picker {
+  -webkit-appearance: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  margin-right: 8px;
+  cursor: pointer;
+  background: transparent;
+}
+.color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
 .apple-list {
   background: transparent;
   padding: 0;
@@ -87,36 +65,24 @@ ion-item-sliding {
 
 .apple-item {
   --background: #ffffff;
-  --padding-start: 4px;
+  --padding-start: 16px;
   --inner-padding-end: 16px;
   font-size: 17px;
   letter-spacing: -0.374px;
 }
 
-.apple-label h2 {
+.apple-label {
   font-size: 17px;
   font-weight: 400;
   color: var(--apple-near-black);
   margin: 0;
 }
 
-.completed h2 {
-  text-decoration: line-through;
-  color: #8e8e93;
-  opacity: 0.6;
-}
-
-.check-btn {
-  margin: 0;
-  --padding-start: 8px;
-  --padding-end: 8px;
-  font-size: 24px;
-}
-
 .category-dot {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
+  margin-right: 12px;
 }
 
 .empty-state {
@@ -129,13 +95,4 @@ ion-item-sliding {
 
 .delete-option {
   font-size: 20px;
-}
-
-/* Animations */
-.task-item {
-  transition: transform 0.2s ease;
-}
-
-.apple-item:active {
-  transform: scale(0.98);
 }
