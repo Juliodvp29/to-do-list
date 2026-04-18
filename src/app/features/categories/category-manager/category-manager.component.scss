@@ -1,98 +1,156 @@
 :host {
   --apple-blue: #0071e3;
-  --apple-gray: #f5f5f7;
+  --apple-gray-bg: #f5f5f7;
   --apple-near-black: #1d1d1f;
+  --apple-secondary-text: rgba(0, 0, 0, 0.48);
+  --apple-card-bg: #ffffff;
+  --apple-shadow: rgba(0, 0, 0, 0.08) 0px 2px 12px 0px;
 }
 
 ion-content {
-  --background: var(--apple-gray);
+  --background: var(--apple-gray-bg);
 }
 
 ion-title {
+  font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 600;
   letter-spacing: -0.28px;
+  color: var(--apple-near-black);
 }
+
+ion-toolbar {
+  --background: rgba(245, 245, 247, 0.9);
+}
+
 
 .add-category-wrapper {
   margin-bottom: 24px;
 }
 
-.apple-input-item {
-  --background: #ffffff;
-  --border-radius: 12px;
-  --padding-start: 16px;
-  --inner-padding-end: 8px;
+.add-category-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--apple-card-bg);
   border-radius: 12px;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px;
+  padding: 14px 16px;
+  box-shadow: var(--apple-shadow);
+  transition: box-shadow 0.25s ease;
+
+  &:focus-within {
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 20px 0px;
+  }
+}
+
+.color-preview {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease;
+
+  &:active { transform: scale(0.9); }
+
+  input[type="color"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
 }
 
 .apple-input {
-  --placeholder-color: #8e8e93;
+  flex: 1;
   --color: var(--apple-near-black);
+  --placeholder-color: var(--apple-secondary-text);
+  font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 17px;
   letter-spacing: -0.374px;
+  --padding-start: 0;
+  --padding-end: 0;
 }
 
-.color-picker {
-  -webkit-appearance: none;
-  border: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  padding: 0;
-  margin-right: 8px;
-  cursor: pointer;
-  background: transparent;
+.add-btn {
+  --color: var(--apple-blue);
+  font-size: 26px;
+  --padding-start: 4px;
+  --padding-end: 0;
+  animation: fadeInScale 0.2s ease;
 }
-.color-picker::-webkit-color-swatch-wrapper {
-  padding: 0;
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1);   }
 }
-.color-picker::-webkit-color-swatch {
-  border: none;
-  border-radius: 50%;
-}
+
 
 .apple-list {
   background: transparent;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 ion-item-sliding {
-  margin-bottom: 10px;
   border-radius: 12px;
   overflow: hidden;
+  background: var(--apple-card-bg);
+  box-shadow: var(--apple-shadow);
 }
 
 .apple-item {
-  --background: #ffffff;
+  --background: var(--apple-card-bg);
   --padding-start: 16px;
-  --inner-padding-end: 16px;
-  font-size: 17px;
-  letter-spacing: -0.374px;
+  --inner-padding-end: 0;
+  --min-height: 54px;
 }
 
-.apple-label {
-  font-size: 17px;
-  font-weight: 400;
-  color: var(--apple-near-black);
-  margin: 0;
-}
-
-.category-dot {
+.category-color-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   margin-right: 12px;
+  flex-shrink: 0;
 }
 
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  color: #8e8e93;
+.apple-label {
+  font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 17px;
+  font-weight: 400;
   letter-spacing: -0.374px;
+  color: var(--apple-near-black);
 }
 
 .delete-option {
   font-size: 20px;
+}
+
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px;
+  gap: 10px;
+  text-align: center;
+
+  .empty-icon {
+    font-size: 48px;
+    color: rgba(0, 0, 0, 0.12);
+  }
+
+  p {
+    font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.224px;
+    color: var(--apple-secondary-text);
+    margin: 0;
+  }
 }
