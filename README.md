@@ -7,6 +7,7 @@ Este repositorio contiene la solución a la prueba técnica para desarrollador I
 ## Instrucciones de Ejecución
 
 ### Desarrollo Local (Navegador)
+
 Para ejecutar la aplicación en un entorno de desarrollo web:
 
 1. Instale las dependencias del proyecto:
@@ -15,6 +16,7 @@ Para ejecutar la aplicación en un entorno de desarrollo web:
    `ionic serve`
 
 ### Ejecución en Android
+
 Para compilar y ejecutar en dispositivos Android:
 
 1. Genere el build de producción web:
@@ -26,6 +28,7 @@ Para compilar y ejecutar en dispositivos Android:
 4. Ejecute la aplicación desde Android Studio en un dispositivo físico o emulador.
 
 ### Ejecución en iOS
+
 Para compilar y ejecutar en dispositivos iOS (requiere macOS y Xcode):
 
 1. Genere el build de producción web:
@@ -35,20 +38,6 @@ Para compilar y ejecutar en dispositivos iOS (requiere macOS y Xcode):
 3. Abra el proyecto en Xcode:
    `npx cap open ios`
 4. Ejecute la aplicación desde Xcode en un dispositivo físico o simulador.
-
----
-
-## Demostración en Video
-
-### 1. Funcionalidad General (Móvil)
-Muestra la fluidez de la interfaz, la creación de tareas, el sistema de categorías y la limpieza visual.
-> ![Ver Video de Funcionalidad](docs/media/cap1.mp4)
-
-### 2. Firebase Remote Config y Feature Flags
-Demostración de cómo se activan/desactivan funcionalidades en tiempo real sin necesidad de reinstalar la app.
-> ![Ver Video de Remote Config](docs/media/cap2.mp4)
-
----
 
 ## Detalles de los Cambios Realizados
 
@@ -72,6 +61,7 @@ El principal desafío técnico fue la integración y configuración correcta de 
 ### 2. ¿Qué técnicas de optimización de rendimiento aplicaste y por qué?
 
 Para asegurar un rendimiento óptimo se aplicaron tres técnicas fundamentales:
+
 - **Angular Signals**: Se utilizó la reactividad granular de los Signals para asegurar que solo las partes de la interfaz que dependen directamente de un dato cambiado se actualicen, evitando re-renderizados innecesarios.
 - **Estrategia OnPush**: El uso de ChangeDetectionStrategy.OnPush en los componentes permite que Angular ignore la detección de cambios a menos que las referencias de las entradas cambien explícitamente, ahorrando ciclos de CPU.
 - **Virtual Scrolling**: Para manejar listas potencialmente infinitas, se implementó cdk-virtual-scroll-viewport. Esta técnica solo mantiene en el DOM los elementos visibles para el usuario, reduciendo drásticamente el consumo de memoria y mejorando la fluidez del scroll.
@@ -79,6 +69,7 @@ Para asegurar un rendimiento óptimo se aplicaron tres técnicas fundamentales:
 ### 3. ¿Cómo aseguraste la calidad y mantenibilidad del código?
 
 La calidad del código se aseguró siguiendo los principios de la arquitectura limpia y modular:
+
 - **Separación de Responsabilidades**: Se dividió el código en capas (core para servicios y estado, features para componentes de negocio, y pages para las vistas), facilitando la localización de errores y la extensión de funcionalidades.
 - **Modulariadad con Standalone Components**: El uso de componentes independientes reduce la complejidad de la configuración de módulos y mejora los tiempos de compilación.
 - **Tipado Estricto**: Se utilizó TypeScript de forma rigurosa para prevenir errores en tiempo de desarrollo y asegurar que la comunicación entre componentes sea segura.
@@ -87,4 +78,5 @@ La calidad del código se aseguró siguiendo los principios de la arquitectura l
 ---
 
 ## Recursos Multimedia
+
 Las capturas de pantalla y grabaciones de video que muestran las funcionalidades en acción se encuentran disponibles en la carpeta docs/media/.
