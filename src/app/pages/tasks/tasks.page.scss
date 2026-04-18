@@ -1,0 +1,104 @@
+:host {
+  --apple-blue: #0071e3;
+  --apple-gray: #f5f5f7;
+  --apple-near-black: #1d1d1f;
+}
+
+ion-content {
+  --background: var(--apple-gray);
+}
+
+ion-title {
+  font-weight: 600;
+  letter-spacing: -0.28px;
+}
+
+.tasks-container {
+  padding: 20px;
+}
+
+.add-task-wrapper {
+  margin-bottom: 24px;
+}
+
+.apple-input-item {
+  --background: #ffffff;
+  --border-radius: 12px;
+  --padding-start: 16px;
+  --inner-padding-end: 8px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 16px;
+}
+
+.apple-input {
+  --placeholder-color: #8e8e93;
+  --color: var(--apple-near-black);
+  font-size: 17px;
+  letter-spacing: -0.374px;
+}
+
+.apple-list {
+  background: transparent;
+  padding: 0;
+}
+
+ion-item-sliding {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.apple-item {
+  --background: #ffffff;
+  --padding-start: 4px;
+  --inner-padding-end: 16px;
+  font-size: 17px;
+  letter-spacing: -0.374px;
+}
+
+.apple-label h2 {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--apple-near-black);
+  margin: 0;
+}
+
+.completed h2 {
+  text-decoration: line-through;
+  color: #8e8e93;
+  opacity: 0.6;
+}
+
+.check-btn {
+  margin: 0;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-size: 24px;
+}
+
+.category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #8e8e93;
+  font-size: 17px;
+  letter-spacing: -0.374px;
+}
+
+.delete-option {
+  font-size: 20px;
+}
+
+/* Animations */
+.task-item {
+  transition: transform 0.2s ease;
+}
+
+.apple-item:active {
+  transform: scale(0.98);
+}

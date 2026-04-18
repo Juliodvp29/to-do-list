@@ -27,6 +27,34 @@ export class TodoStore {
     });
   }
 
+  // Actions
+  addTask(title: string, categoryId?: string) {
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title,
+      completed: false,
+      categoryId,
+      createdAt: Date.now(),
+    };
+    this.tasksSignal.update((tasks) => [newTask, ...tasks]);
+  }
+
+  toggleTask(taskId: string) {
+    this.tasksSignal.update((tasks) =>
+      tasks.map((t) => (t.id === taskId ? { ...t, completed: !t.completed } : t))
+    );
+  }
+
+  deleteTask(taskId: string) {
+    this.tasksSignal.update((tasks) => tasks.filter((t) => t.id !== taskId));
+  }
+
+  updateTask(taskId: string, updates: Partial<Task>) {
+    this.tasksSignal.update((tasks) =>
+      tasks.map((t) => (t.id === taskId ? { ...t, ...updates } : t))
+    );
+  }
+
   setTasks(tasks: Task[]) {
     this.tasksSignal.set(tasks);
   }

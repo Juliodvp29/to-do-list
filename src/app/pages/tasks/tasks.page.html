@@ -1,0 +1,71 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Tareas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">Tareas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="tasks-container">
+    <!-- Add Task Section -->
+    <div class="add-task-wrapper">
+      <ion-item lines="none" class="apple-input-item">
+        <ion-input
+          placeholder="Nueva tarea..."
+          [ngModel]="newTaskTitle()"
+          (ngModelChange)="newTaskTitle.set($event)"
+          (keyup.enter)="addTask()"
+          class="apple-input"
+        ></ion-input>
+        <ion-button fill="clear" slot="end" (click)="addTask()" [disabled]="!newTaskTitle().trim()" class="add-btn">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+
+    <!-- List Section -->
+    <ion-list class="apple-list">
+      @for (task of tasks(); track task.id) {
+        <ion-item-sliding>
+          <ion-item lines="none" class="apple-item">
+            <ion-button 
+              fill="clear" 
+              slot="start" 
+              (click)="toggleTask(task.id)"
+              class="check-btn"
+            >
+              <ion-icon 
+                [name]="task.completed ? 'checkmark-circle' : 'radioButtonOffOutline'"
+                [color]="task.completed ? 'primary' : 'medium'"
+              ></ion-icon>
+            </ion-button>
+            <ion-label [class.completed]="task.completed" class="apple-label">
+              <h2>{{ task.title }}</h2>
+            </ion-label>
+            @if (task.categoryId) {
+              <div 
+                class="category-dot" 
+                [style.background-color]="getCategoryColor(task.categoryId)"
+              ></div>
+            }
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="deleteTask(task.id)" class="delete-option">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+      } @empty {
+        <div class="empty-state">
+          <p>Todo listo por hoy.</p>
+        </div>
+      }
+    </ion-list>
+  </div>
+</ion-content>
