@@ -19,15 +19,22 @@
         />
       </div>
       <ion-input
-        placeholder="Nueva categoría..."
+        [placeholder]="editingCategoryId() ? 'Editar categoría...' : 'Nueva categoría...'"
         [ngModel]="newCategoryName()"
         (ngModelChange)="newCategoryName.set($event)"
         (keyup.enter)="addCategory()"
         class="apple-input"
       ></ion-input>
+      
+      @if (editingCategoryId()) {
+        <ion-button fill="clear" (click)="cancelEdit()" color="medium">
+          Cancelar
+        </ion-button>
+      }
+
       @if (newCategoryName().trim()) {
         <ion-button fill="clear" (click)="addCategory()" class="add-btn">
-          <ion-icon name="add-circle" slot="icon-only"></ion-icon>
+          <ion-icon [name]="editingCategoryId() ? 'checkmark-circle' : 'add-circle'" slot="icon-only"></ion-icon>
         </ion-button>
       }
     </div>
@@ -43,6 +50,9 @@
         </ion-item>
 
         <ion-item-options side="end">
+          <ion-item-option color="primary" (click)="startEdit(cat)" class="edit-option">
+            <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
+          </ion-item-option>
           <ion-item-option color="danger" (click)="deleteCategory(cat.id)" class="delete-option">
             <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
           </ion-item-option>

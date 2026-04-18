@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { 
   IonContent, 
   IonHeader, 
@@ -26,6 +27,7 @@ import {
   arrowUpCircle,
   gridOutline,
   checkmarkDoneCircleOutline,
+  ellipseOutline
 } from 'ionicons/icons';
 import { TodoStore } from '@core/services/todo.store';
 import { ConfigService } from '@core/services/config.service';
@@ -53,6 +55,7 @@ import { CategoryManagerComponent } from '../../features/categories/category-man
     IonItemOption,
     IonInput,
     IonButtons,
+    ScrollingModule
   ]
 })
 export class TasksPage {
@@ -74,6 +77,7 @@ export class TasksPage {
       arrowUpCircle,
       gridOutline,
       checkmarkDoneCircleOutline,
+      ellipseOutline
     });
   }
 

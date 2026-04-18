@@ -19,7 +19,7 @@ import {
   IonInput
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { addCircle, trashOutline, folderOpenOutline } from 'ionicons/icons';
+import { addCircle, trashOutline, folderOpenOutline, pencilOutline } from 'ionicons/icons';
 import { TodoStore } from '@core/services/todo.store';
 
 @Component({
@@ -55,18 +55,39 @@ export class CategoryManagerComponent {
 
   newCategoryName = signal('');
   newCategoryColor = signal('#0071e3');
+  editingCategoryId = signal<string | null>(null);
 
   constructor() {
-    addIcons({ addCircle, trashOutline, folderOpenOutline });
+    addIcons({ addCircle, trashOutline, folderOpenOutline, pencilOutline });
   }
 
   addCategory() {
     const name = this.newCategoryName().trim();
     if (name) {
-      this.todoStore.addCategory(name, this.newCategoryColor());
-      this.newCategoryName.set('');
-      this.newCategoryColor.set('#0071e3');
+      if (this.editingCategoryId()) {
+        this.todoStore.updateCategory(this.editingCategoryId()!, {
+          name,
+          color: this.newCategoryColor()
+        });
+        this.cancelEdit();
+      } else {
+        this.todoStore.addCategory(name, this.newCategoryColor());
+        this.newCategoryName.set('');
+        this.newCategoryColor.set('#0071e3');
+      }
     }
+  }
+
+  startEdit(cat: any) {
+    this.editingCategoryId.set(cat.id);
+    this.newCategoryName.set(cat.name);
+    this.newCategoryColor.set(cat.color);
+  }
+
+  cancelEdit() {
+    this.editingCategoryId.set(null);
+    this.newCategoryName.set('');
+    this.newCategoryColor.set('#0071e3');
   }
 
   deleteCategory(id: string) {

@@ -67,48 +67,50 @@
       </div>
     }
 
-    <!-- Task List -->
-    <ion-list class="apple-list">
-      @for (task of filteredTasks(); track task.id; let i = $index) {
-        <ion-item-sliding>
-          <ion-item lines="none" class="apple-item" [class.completed-item]="task.completed">
-            <button
-              class="check-btn"
-              slot="start"
-              (click)="toggleTask(task.id)"
-            >
-              <ion-icon
-                [name]="task.completed ? 'checkmark-circle' : 'circle-outline'"
-                [class.checked]="task.completed"
-                class="check-icon"
-              ></ion-icon>
-            </button>
+    <!-- Task List with Virtual Scroll -->
+    <cdk-virtual-scroll-viewport itemSize="66" class="tasks-viewport">
+      <ion-list class="apple-list">
+        @for (task of filteredTasks(); track task.id; let i = $index) {
+          <ion-item-sliding>
+            <ion-item lines="none" class="apple-item" [class.completed-item]="task.completed">
+              <button
+                class="check-btn"
+                slot="start"
+                (click)="toggleTask(task.id)"
+              >
+                <ion-icon
+                  [name]="task.completed ? 'checkmark-circle' : 'ellipse-outline'"
+                  [class.checked]="task.completed"
+                  class="check-icon"
+                ></ion-icon>
+              </button>
 
-            <ion-label class="apple-label" [class.completed]="task.completed">
-              <h2>{{ task.title }}</h2>
-              @if (task.categoryId) {
-                <p class="category-tag">
-                  <span class="tag-dot" [style.background-color]="getCategoryColor(task.categoryId)"></span>
-                  {{ getCategoryName(task.categoryId) }}
-                </p>
-              }
-            </ion-label>
-          </ion-item>
+              <ion-label class="apple-label" [class.completed]="task.completed">
+                <h2>{{ task.title }}</h2>
+                @if (task.categoryId) {
+                  <p class="category-tag">
+                    <span class="tag-dot" [style.background-color]="getCategoryColor(task.categoryId)"></span>
+                    {{ getCategoryName(task.categoryId) }}
+                  </p>
+                }
+              </ion-label>
+            </ion-item>
 
-          <ion-item-options side="end">
-            <ion-item-option color="danger" (click)="deleteTask(task.id)" class="delete-option">
-              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-            </ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      } @empty {
-        <div class="empty-state">
-          <ion-icon name="checkmark-done-circle-outline" class="empty-icon"></ion-icon>
-          <h3>Todo al día</h3>
-          <p>Añade una tarea para comenzar.</p>
-        </div>
-      }
-    </ion-list>
+            <ion-item-options side="end">
+              <ion-item-option color="danger" (click)="deleteTask(task.id)" class="delete-option">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        } @empty {
+          <div class="empty-state">
+            <ion-icon name="checkmark-done-circle-outline" class="empty-icon"></ion-icon>
+            <h3>Todo al día</h3>
+            <p>Añade una tarea para comenzar.</p>
+          </div>
+        }
+      </ion-list>
+    </cdk-virtual-scroll-viewport>
 
   </div>
 </ion-content>
