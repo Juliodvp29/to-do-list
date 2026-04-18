@@ -6,8 +6,19 @@ Este repositorio contiene la solución a la prueba técnica para desarrollador I
 
 ## Instrucciones de Ejecución
 
-### Desarrollo Local (Navegador)
+### Requisitos Previos
+- Node.js y npm instalados.
+- Ionic CLI instalado globalmente: `npm install -g @ionic/cli`.
 
+### Configuración de Envío
+Debido a que los archivos de configuración contienen credenciales de Firebase, estos han sido omitidos del repositorio. Siga estos pasos para configurar el entorno:
+
+1. Localice el archivo `src/environments/environment.template.ts`.
+2. Cree una copia de este archivo en la misma carpeta llamada `environment.ts`.
+3. Cree otra copia llamada `environment.prod.ts`.
+4. En ambos archivos, reemplace los valores de marcador de posición (como `YOUR_API_KEY`) con sus credenciales reales de Firebase.
+
+### Desarrollo Local (Navegador)
 Para ejecutar la aplicación en un entorno de desarrollo web:
 
 1. Instale las dependencias del proyecto:
@@ -16,7 +27,6 @@ Para ejecutar la aplicación en un entorno de desarrollo web:
    `ionic serve`
 
 ### Ejecución en Android
-
 Para compilar y ejecutar en dispositivos Android:
 
 1. Genere el build de producción web:
@@ -25,10 +35,9 @@ Para compilar y ejecutar en dispositivos Android:
    `npx cap sync android`
 3. Abra el proyecto en Android Studio:
    `npx cap open android`
-4. Ejecute la aplicación desde Android Studio en un dispositivo físico o emulador.
+4. Ejecute la aplicación mediante Android Studio en un dispositivo físico o emulador.
 
 ### Ejecución en iOS
-
 Para compilar y ejecutar en dispositivos iOS (requiere macOS y Xcode):
 
 1. Genere el build de producción web:
@@ -37,7 +46,23 @@ Para compilar y ejecutar en dispositivos iOS (requiere macOS y Xcode):
    `npx cap sync ios`
 3. Abra el proyecto en Xcode:
    `npx cap open ios`
-4. Ejecute la aplicación desde Xcode en un dispositivo físico o simulador.
+4. Ejecute la aplicación mediante Xcode en un dispositivo físico o simulador.
+
+---
+
+## Demostración en Video
+
+### 1. Funcionalidad General (Móvil)
+Muestra la fluidez de la interfaz, la creación de tareas, el sistema de categorías y la limpieza visual.
+
+<video src="docs/media/cap1.mp4" controls="controls" style="max-width: 100%;"></video>
+
+### 2. Firebase Remote Config y Feature Flags
+Demostración de cómo se activan y desactivan funcionalidades en tiempo real sin necesidad de reinstalar la aplicación.
+
+<video src="docs/media/cap2.mp4" controls="controls" style="max-width: 100%;"></video>
+
+---
 
 ## Detalles de los Cambios Realizados
 
