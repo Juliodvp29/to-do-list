@@ -4,6 +4,20 @@ Este repositorio contiene la solución a la prueba técnica para desarrollador I
 
 ---
 
+## Ejecutables
+
+### Android (APK)
+El archivo APK de debug se encuentra disponible para descarga directa en la carpeta `docs/media/` del repositorio:
+
+[Descargar APK](docs/media/todo-list-debug.apk)
+
+Para instalarlo en un dispositivo Android, habilite la opción "Instalar aplicaciones de fuentes desconocidas" en los ajustes de seguridad del dispositivo.
+
+### iOS (IPA)
+La generación del archivo IPA requiere obligatoriamente un sistema macOS con Xcode instalado. Dado que el desarrollo se realizó en Windows, no es posible generar el IPA de forma directa. Para compilarlo, siga los pasos descritos en la sección "Ejecución en iOS" utilizando un Mac.
+
+---
+
 ## Instrucciones de Ejecución
 
 ### Requisitos Previos
