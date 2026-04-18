@@ -4,6 +4,20 @@ Este repositorio contiene la solución a la prueba técnica para desarrollador I
 
 ---
 
+## Ejecutables
+
+### Android (APK)
+El archivo APK de debug se encuentra disponible para descarga directa en la carpeta `docs/media/` del repositorio:
+
+[Descargar APK](docs/media/todo-list-debug.apk)
+
+Para instalarlo en un dispositivo Android, habilite la opción "Instalar aplicaciones de fuentes desconocidas" en los ajustes de seguridad del dispositivo.
+
+### iOS (IPA)
+La generación del archivo IPA requiere obligatoriamente un sistema macOS con Xcode instalado. Dado que el desarrollo se realizó en Windows, no es posible generar el IPA de forma directa. Para compilarlo, siga los pasos descritos en la sección "Ejecución en iOS" utilizando un Mac.
+
+---
+
 ## Instrucciones de Ejecución
 
 ### Requisitos Previos
@@ -47,20 +61,6 @@ Para compilar y ejecutar en dispositivos iOS (requiere macOS y Xcode):
 3. Abra el proyecto en Xcode:
    `npx cap open ios`
 4. Ejecute la aplicación mediante Xcode en un dispositivo físico o simulador.
-
----
-
-## Demostración en Video
-
-### 1. Funcionalidad General (Móvil)
-Muestra la fluidez de la interfaz, la creación de tareas, el sistema de categorías y la limpieza visual.
-
-<video src="docs/media/cap1.mp4" controls="controls" style="max-width: 100%;"></video>
-
-### 2. Firebase Remote Config y Feature Flags
-Demostración de cómo se activan y desactivan funcionalidades en tiempo real sin necesidad de reinstalar la aplicación.
-
-<video src="docs/media/cap2.mp4" controls="controls" style="max-width: 100%;"></video>
 
 ---
 
