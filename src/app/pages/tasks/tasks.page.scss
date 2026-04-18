@@ -191,6 +191,11 @@ ion-title[size="large"] {
   gap: 8px;
 }
 
+.tasks-viewport {
+  height: calc(100vh - 300px);
+  width: 100%;
+}
+
 ion-item-sliding {
   border-radius: 12px;
   overflow: hidden;

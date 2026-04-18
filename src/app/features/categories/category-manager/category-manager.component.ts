@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalController } from '@ionic/angular/standalone';
@@ -44,7 +44,8 @@ import { TodoStore } from '@core/services/todo.store';
     IonLabel,
     IonIcon,
     IonInput
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CategoryManagerComponent {
   private modalCtrl = inject(ModalController);
