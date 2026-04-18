@@ -1,0 +1,327 @@
+:host {
+  --apple-blue: #0071e3;
+  --apple-blue-hover: #0077ed;
+  --apple-gray-bg: #f5f5f7;
+  --apple-near-black: #1d1d1f;
+  --apple-body-text: rgba(0, 0, 0, 0.8);
+  --apple-secondary-text: rgba(0, 0, 0, 0.48);
+  --apple-card-bg: #ffffff;
+  --apple-divider: rgba(0, 0, 0, 0.08);
+  --apple-shadow: rgba(0, 0, 0, 0.08) 0px 2px 12px 0px;
+  --apple-shadow-hover: rgba(0, 0, 0, 0.14) 0px 4px 20px 0px;
+}
+
+
+ion-content {
+  --background: var(--apple-gray-bg);
+}
+
+
+.apple-header {
+  ion-toolbar {
+    --background: rgba(245, 245, 247, 0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+ion-title {
+  font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.28px;
+  color: var(--apple-near-black);
+}
+
+ion-title[size="large"] {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.374px;
+  color: var(--apple-near-black);
+}
+
+.header-action-btn {
+  --color: var(--apple-blue);
+  font-size: 20px;
+}
+
+
+.tasks-container {
+  padding: 16px 20px 100px;
+}
+
+
+.category-filters {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 4px 0 12px;
+  margin-bottom: 16px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--apple-near-black);
+
+  border: none;
+  border-radius: 20px;
+  padding: 7px 14px;
+
+  font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.224px;
+
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:active {
+    transform: scale(0.94);
+  }
+
+  &.active {
+    background: var(--apple-near-black);
+    color: #ffffff;
+
+    .chip-dot {
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+.chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: border 0.2s ease;
+}
+
+
+.add-task-wrapper {
+  margin-bottom: 8px;
+}
+
+.add-task-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--apple-card-bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: var(--apple-shadow);
+  transition: box-shadow 0.25s ease;
+
+  &:focus-within {
+    box-shadow: var(--apple-shadow-hover);
+  }
+}
+
+.add-icon {
+  font-size: 22px;
+  color: var(--apple-blue);
+  flex-shrink: 0;
+}
+
+.apple-input {
+  flex: 1;
+  --color: var(--apple-near-black);
+  --placeholder-color: var(--apple-secondary-text);
+  font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  letter-spacing: -0.374px;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+.send-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--apple-blue);
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  animation: fadeIn 0.2s ease;
+
+  &:active {
+    transform: scale(0.88);
+    opacity: 0.7;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1);   }
+}
+
+
+.task-count {
+  padding: 4px 4px 8px;
+  span {
+    font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.12px;
+    color: var(--apple-secondary-text);
+    text-transform: uppercase;
+  }
+}
+
+
+.apple-list {
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tasks-viewport {
+  height: calc(100vh - 300px);
+  width: 100%;
+}
+
+ion-item-sliding {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--apple-card-bg);
+  box-shadow: var(--apple-shadow);
+  transition: box-shadow 0.25s ease;
+
+  &:active {
+    box-shadow: none;
+    transform: scale(0.985);
+  }
+}
+
+.apple-item {
+  --background: var(--apple-card-bg);
+  --padding-start: 6px;
+  --padding-end: 16px;
+  --inner-padding-end: 0;
+  --min-height: 58px;
+  transition: opacity 0.25s ease;
+
+  &.completed-item {
+    opacity: 0.55;
+  }
+}
+
+.check-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+
+  &:active { transform: scale(0.85); }
+}
+
+.check-icon {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.18);
+  transition: color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &.checked {
+    color: var(--apple-blue);
+    transform: scale(1.1);
+  }
+}
+
+.apple-label {
+  margin: 0;
+  padding: 12px 0;
+
+  h2 {
+    font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.374px;
+    line-height: 1.47;
+    color: var(--apple-near-black);
+    margin: 0 0 2px;
+    transition: color 0.2s ease;
+  }
+
+  &.completed h2 {
+    text-decoration: line-through;
+    color: var(--apple-secondary-text);
+  }
+}
+
+.category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.12px;
+  color: var(--apple-secondary-text);
+}
+
+.tag-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.delete-option {
+  font-size: 20px;
+}
+
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+  text-align: center;
+
+  .empty-icon {
+    font-size: 56px;
+    color: rgba(0, 0, 0, 0.15);
+  }
+
+  h3 {
+    font-family: 'SF Pro Display', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.28px;
+    color: var(--apple-near-black);
+    margin: 0;
+  }
+
+  p {
+    font-family: 'SF Pro Text', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.224px;
+    color: var(--apple-secondary-text);
+    margin: 0;
+  }
+}
